@@ -6,7 +6,7 @@ app = Flask("test app")
 @app.route('/')
 # ‘/’ URL is bound with hello_world() function.
 def hello_world():
-    return 'Hello World'
+    return f"Hello World {socket.gethostname()}"
 
 # main driver function
 if __name__ == '__main__':

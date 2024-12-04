@@ -1,0 +1,38 @@
+
+
+services:
+  #application 1
+  app_1:
+    build: .
+    container_name: app_1
+    networks:
+      - app-network
+    expose:
+      - "5050"
+
+  #application 2
+  app_2:
+    build: .
+    container_name: app_2
+    networks:
+      - app-network
+    expose:
+      - "5050"
+
+
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx-proxy
+    networks:
+      - app-network
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.config:/etc/nginx.config:ro
+
+networks:
+    app-network:
+      driver: bridge
+
+
